@@ -2,6 +2,8 @@
 
 This repository formalises selected arguments from Mark Everitt's *Quantum Mechanics as a Relativistic Statistical Theory* in Lean 4, using Mathlib. The equation and ansatz numbers in the source refer to the manuscript dated 14 October 2026. [Read the public preprint on arXiv](https://arxiv.org/abs/2608.29353).
 
+Note: most of this material in this repo is AI generated from the paper.
+
 ## Reading the argument
 
 Start with `theorem_minimal_argument_from_field_ansatze` in [MassShell.lean](MassShell.lean). Its hypotheses state the physical assumptions, and its proof shows where each enters. Definitions beginning with `ansatz_` identify modelling assumptions.
