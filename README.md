@@ -2,7 +2,9 @@
 
 This repository formalises selected arguments from Mark Everitt's *Quantum Mechanics as a Relativistic Statistical Theory* in Lean 4, using Mathlib. The equation and ansatz numbers in the source refer to the manuscript dated 14 October 2026. [Read the public preprint on arXiv](https://arxiv.org/abs/2608.29353).
 
-Note: most of this material in this repo is AI generated from the paper.
+Note: most of this material in this repo is AI generated from the paper. The first step was to re-express using ChatGPT the paper in a theorem proof (see [mass_shell_argument.pdf](mass_shell_argument.pdf)) format and check this structure with a flow diagram (see [mass_shell_flow.pdf](mass_shell_flow.pdf)). Then numerous iterations of generating Lean code, inspecting it for obvious missing martial or other issues were then used until this version, deemed good enough to share, was created.
+
+As this stage it is an intellectual curiosity and I do not yet claim it substantiated the claims made in my original manuscript.
 
 ## Reading the argument
 
