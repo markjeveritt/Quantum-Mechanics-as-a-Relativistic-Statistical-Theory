@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+message: "If you use this Lean formalisation in your research, please cite the accompanying paper."
+title: "Mass-shell factorisation in Lean"
+type: software
+authors:
+  - family-names: Everitt
+    given-names: Mark J.
+license: Apache-2.0
+preferred-citation:
+  type: unpublished
+  authors:
+    - family-names: Everitt
+      given-names: Mark
+  title: "Quantum Mechanics as a Relativistic Statistical Theory: A Mass-Shell Factorisation Approach"
+  year: 2026
+  notes: "Preprint, arXiv:2608.29353"
+  url: "https://arxiv.org/abs/2608.29353"
