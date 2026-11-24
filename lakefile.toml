@@ -1,0 +1,10 @@
+name = "massShellProof"
+defaultTargets = ["MassShell"]
+
+[[require]]
+name = "mathlib"
+scope = "leanprover-community"
+rev = "v4.36.0"
+
+[[lean_lib]]
+name = "MassShell"
