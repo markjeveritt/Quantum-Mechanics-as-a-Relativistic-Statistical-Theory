@@ -1,0 +1,112 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=26mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\newtheorem*{theorem}{Theorem}
+\newcommand{\Ds}{\mathcal D'}
+\newcommand{\id}{\mathbf 1}
+\newcommand{\dd}{\partial}
+\DeclareMathOperator{\diag}{diag}
+\title{All-order continuation of massive free-shell distributions}
+\author{}\date{}
+\begin{document}
+\maketitle
+\vspace{-2em}
+Let $p_\mu$ be covariant momentum coordinates and $x^\mu$ spacetime coordinates. Use the metric
+$\eta^{\mu\nu}=\diag(1,-1,-1,-1)$. Write $p^\mu=\eta^{\mu\nu}p_\nu$,
+$\dd_\mu=\dd/\dd x^\mu$, $p^2=p^\mu p_\mu$ and sum repeated indices.
+Fix $m\in\mathbb R\setminus\{0\}$. Suppose $\gamma^\mu\gamma^\nu+\gamma^\nu\gamma^\mu
+=2\eta^{\mu\nu}\id$, and put $K=\gamma^\mu p_\mu$, $H=K-m\id$.
+Take $\mathcal V=M_4(\Ds(\mathbb R^4_x\times\mathbb R^4_p;\mathbb C))$
+with the usual smooth compactly supported test functions.
+Use the formal Moyal product with first contraction
+$\partial_p\otimes\partial_x-\partial_x\otimes\partial_p$ and coefficient $i/2$.
+
+\begin{theorem}
+For $F\in\mathcal V$, a sequence $W\in\mathcal V[[\hbar]]$ satisfying
+$W|_{\hbar=0}=F$ and $H\star W=W\star H=0$ exists if and only if
+\[
+ HF=0,\qquad FH=0,\qquad TF=0,\qquad T=p^\mu\dd_\mu .
+\]
+All three conditions are distribution identities on the leading datum alone.
+\end{theorem}
+
+\begin{proof}
+Write $L$ and $R$ for left and right star multiplication by $K$. Since $K$ is
+linear in momentum and independent of spacetime, every Moyal coefficient of order
+at least two acting on either side vanishes. Each monomial of order $r$ differentiates
+each factor exactly $r$ times. This gives
+\[
+ LV=KV+\tfrac{i\hbar}{2}\gamma^\mu\dd_\mu V,\qquad
+ RV=VK-\tfrac{i\hbar}{2}(\dd_\mu V)\gamma^\mu .
+\]
+These operators commute because left and right matrix multiplications commute,
+and the spacetime derivatives commute with each other and with momentum
+multiplication. With $q=p^2-m^2$ and $B=\eta^{\mu\nu}\dd_\mu\dd_\nu/4$,
+the Clifford identity yields
+\[
+ L^2-m^2=q+i\hbar T-\hbar^2B,\qquad
+ R^2-m^2=q-i\hbar T-\hbar^2B .
+\]
+Indeed the anticommutator of $K$ and $\gamma^\mu$ equals $2p^\mu\id$,
+and contraction of two commuting derivatives with $\gamma^\mu\gamma^\nu$
+retains only its symmetric part. For any solution the two squared equations
+vanish. Their difference yields $2i\hbar TW=0$, hence $TF=0$.
+The original equations at order zero give $HF=FH=0$.
+
+Conversely assume the three conditions. From $(K+m)HF=0$ we get $qF=0$.
+Let $E=p_\mu\partial_{p_\mu}$, with the derivative applied before multiplication,
+and put $D=-E/2$. All these operators act on global distributions. The distributional
+product rule gives the following identities, where scalars act by
+multiples of the identity.
+\begin{equation}
+ qD=(D+1)q+m^2,\qquad TD=(D+\tfrac12)T,\qquad
+ [D,B]=[B,T]=[B,q]=0 .                                      \tag{1}
+\end{equation}
+In particular $E(q)=2p^2$ and $[E,T]=T$. These identities involve no
+restriction of a distribution to the shell.
+
+Construct $V_0=F$ and, for $j\geq0$, set
+\begin{equation}
+ V_{j+1}=\frac{(D-j)BV_j}{m^2(j+1)} .                       \tag{2}
+\end{equation}
+We claim $TV_j=0$ for all $j$ and $qV_{j+1}=BV_j$. Transport follows by
+induction from (1). For $j=0$, (1) and $qF=0$ give $qDBF=m^2BF$.
+If $j\geq1$ and $qV_j=BV_{j-1}$, then
+\begin{align*}
+ m^2(j+1)qV_{j+1}
+ &= (D-(j-1))BqV_j+m^2 BV_j\\
+ &= B(D-(j-1))BV_{j-1}+m^2BV_j
+  =m^2(j+1)BV_j,
+\end{align*}
+where the last equality uses (2) for $V_j$. This proves the claim.
+
+Now take $U=\sum_{j\geq0}\hbar^{2j}V_j$. The claim gives $TU=0$ and
+$(q-\hbar^2 B)U=0$. Thus $(L^2-m^2)U=(R^2-m^2)U=0$. Define
+\[
+ W=\frac{(L+m)(R+m)}{4m^2}\,U .
+\]
+Commutation of $L$ and $R$ gives $(L-m)W=(R-m)W=0$. At order
+zero, $(K+m)F(K+m)/(4m^2)=F$ follows from $KF=FK=mF$.
+Each coefficient uses finitely many derivatives and smooth polynomial
+multipliers of $F$, so it is a distribution on the original full phase space.
+\end{proof}
+\paragraph{A spatially varying example.}
+At $p_*=(m,0,0,0)$ let $P=(\id+\gamma^0)/2$. The leading datum
+$F=\cos(x^1)P\,\delta(p-p_*)$ obeys both ordinary shell equations. Its
+transport equation reduces to $m\partial_0F=0$. Since $U$ has no odd powers,
+the first coefficient of the constructed solution is
+\[
+ W_1=\frac{i}{4m}[\gamma^\mu,\partial_\mu F]
+    =-\frac{i}{4m}\sin(x^1)\,\gamma^1\gamma^0\,\delta(p-p_*).
+\]
+It is nonzero since $(\gamma^1\gamma^0)^2=\id$. Thus even smooth variation of
+the internal density along a spatial coordinate can require a correction.
+
+\noindent
+The result permits spacetime dependence and distributions on both massive sheets.
+The corrections can contain normal derivatives of shell distributions. The
+construction gives a linear choice of continuation. For $F\ne0$, multiplication
+of a solution by $1+c\hbar$ already gives distinct continuations with the same
+leading datum as $c$ varies. Existence here concerns formal series for the free
+generator.
+\end{document}
