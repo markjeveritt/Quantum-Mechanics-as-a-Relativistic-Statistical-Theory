@@ -3362,6 +3362,69 @@ theorem lemma_generator_on_shell_ensemble (side : ProductSide) (b : ℝ) (p : Co
   intro k _
   ring
 
+/-- Every projected internal matrix at a fixed massive on-shell momentum gives an
+exact, spacetime-homogeneous distributional solution of both formal star equations.
+The matrix `density` is arbitrary; projection selects its two-dimensional sector. -/
+theorem theorem_free_shell_solution_family (m : ℝ) (hm : m ≠ 0)
+    (p : Coordinates) (shell : minkowski_pairing p p = m ^ 2)
+    (density : SpinMatrix) :
+    let J := m⁻¹ • four_component_factor p
+    let P := selected_projector J
+    let W := shell_ensemble p (P * density * P)
+    ∀ n side, distribution_moyal_coefficient side n (free_generator m) W = 0 := by
+  intro J P W n side
+  let ρ := P * density * P
+  have sq : J * J = 1 :=
+    lemma_on_shell_normalisation four_component_factor
+      theorem_four_components_are_sufficient p m hm shell
+  have constraints := theorem_projected_distribution_satisfies_both_constraints J density sq
+  have factor_eq : four_component_factor p = m • J := by
+    simp [J, smul_smul, hm]
+  have left_eq : (four_component_factor p - m • 1) * ρ = 0 := by
+    rw [factor_eq, ← smul_sub, smul_mul_assoc]
+    exact (by simpa [ρ, P] using congrArg (m • ·) constraints.1)
+  have right_eq : ρ * (four_component_factor p - m • 1) = 0 := by
+    rw [factor_eq, ← smul_sub, mul_smul_comm]
+    exact (by simpa [ρ, P] using congrArg (m • ·) constraints.2)
+  cases n with
+  | succ n =>
+      exact theorem_homogeneous_mixed_coefficients_vanish side n _ _
+        (lemma_free_generator_momentum_only m) (lemma_homogeneous_shell p ρ)
+  | zero =>
+      rw [lemma_distribution_order_zero, lemma_generator_on_shell_ensemble]
+      cases side with
+      | generator_left =>
+          change shell_ensemble p ((four_component_factor p - m • 1) * ρ) = 0
+          rw [left_eq]
+          ext i j φ
+          simp [shell_ensemble]
+      | generator_right =>
+          change shell_ensemble p (ρ * (four_component_factor p - m • 1)) = 0
+          rw [right_eq]
+          ext i j φ
+          simp [shell_ensemble]
+
+/-- Any spatially homogeneous weak solution of the two ordinary free-shell
+equations extends to an exact formal solution: use the same distribution at every
+order. Every positive Moyal coefficient vanishes because the generator depends
+only on momentum while the distribution has no position derivatives. -/
+theorem theorem_homogeneous_free_all_order_continuation (m : ℝ)
+    (W₀ : EnsembleDistribution) (homogeneous : spatially_constant W₀)
+    (zeroth : ∀ side, mixed_multiplication side (free_generator m) W₀ = 0) :
+    ∃ W : ℕ → EnsembleDistribution, W 0 = W₀ ∧
+      ∀ n side, distribution_product_order side n (free_generator m) W = 0 := by
+  refine ⟨fun _ => W₀, rfl, ?_⟩
+  intro n side
+  change (∑ k ∈ Finset.range (n+1),
+    distribution_moyal_coefficient side k (free_generator m) W₀) = 0
+  apply Finset.sum_eq_zero
+  intro k _
+  cases k with
+  | zero => simpa only [lemma_distribution_order_zero] using zeroth side
+  | succ k =>
+      exact theorem_homogeneous_mixed_coefficients_vanish side k _ _
+        (lemma_free_generator_momentum_only m) homogeneous
+
 theorem lemma_plane_distribution_nonzero (p : Coordinates) : plane_distribution p ≠ 0 := by
   let bump : ContDiffBump ((0:Coordinates),p) := ⟨1,2,by norm_num,by norm_num⟩
   let φ : PhaseTests := ⟨fun z => (bump z : ℂ), Complex.ofRealCLM.contDiff.comp bump.contDiff,

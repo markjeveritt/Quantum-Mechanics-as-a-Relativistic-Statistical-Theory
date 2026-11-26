@@ -8,3 +8,8 @@ rev = "v4.36.0"
 
 [[lean_lib]]
 name = "MassShell"
+roots = [
+  "MassShell", "FreeShellAffine", "FreeShellRadial", "FreeShellRecursion",
+  "FreeShellDirac", "FreeShellSeries", "FreeShellSquare", "FreeShellLeading",
+  "FreeShellBridge", "FreeShellNecessity", "FreeShellExistence"
+]
